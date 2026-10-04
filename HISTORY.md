@@ -1,10 +1,9 @@
 # Consumo medido cada 15 minutos
 
-Extensión local de [Ute2MQTT](https://github.com/rodrigocabraln/Ute2MQTT).
+Extensión de [Ute2MQTT](https://github.com/rodrigocabraln/Ute2MQTT).
 El cliente original sigue consultando consumo del período, gastos y deuda.
 `history_main.py` consulta por separado la curva del portal de autoservicio UTE
-con agrupación `QH` y magnitud `IMPORT_ACTIVE_ENERGY`, usando el código
-validado previamente en la integración local `ute_history`.
+con agrupación `QH` y magnitud `IMPORT_ACTIVE_ENERGY`.
 
 ## Ejecución
 
@@ -71,8 +70,8 @@ cambios de formato pueden requerir actualizar el cliente.
 
 MQTT no permite cargar automáticamente estadísticas pasadas en el recorder de
 Home Assistant. Para el panel Energía y las gráficas históricas hay que mantener
-la integración `ute_history` existente, o implementar un consumidor que importe
-estadísticas. Esta extensión entrega el historial para ese consumidor y un sensor
+una integración que importe estadísticas históricas, o implementar un consumidor
+con esa función. Esta extensión entrega el historial para ese consumidor y un sensor
 del último intervalo; no reproduce lecturas viejas como si ocurrieran ahora.
 
 ## Organización y pruebas
@@ -89,8 +88,6 @@ Pruebas sin credenciales reales: fechas y zona horaria, ausencias y ceros,
 rechazo de datos inválidos, persistencia y correcciones, separación de servicios,
 login, lotes de treinta días y confirmación de publicaciones MQTT.
 
-Validación local: 10 pruebas aprobadas con HTTP y MQTT simulados; CLI verificada.
-No se ejecutó una descarga autenticada ni una publicación contra el broker real
-para esta nueva extensión. El Python del sistema usado para las pruebas es 3.9
-con LibreSSL y emitió una advertencia de urllib3; para ejecutar consultas reales,
-usar el contenedor Python 3.11 incluido o Python 3.11+ con OpenSSL.
+Las pruebas usan HTTP y MQTT simulados y no verifican acceso a servicios reales.
+Para ejecutar consultas reales, usar el contenedor Python 3.11 incluido o
+Python 3.11+ con OpenSSL.

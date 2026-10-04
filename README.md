@@ -1,4 +1,4 @@
-# Extensión local: historial de 15 minutos
+# Historial de consumo de 15 minutos
 
 Este repositorio conserva Ute2MQTT y agrega descarga, persistencia y publicación MQTT del consumo medido. Ver [instalación, arquitectura y límites](HISTORY.md).
 
